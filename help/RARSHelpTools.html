@@ -1,0 +1,30 @@
+<html>
+<title>BIT-RARS 0.1 help contents
+</title>
+<body>
+<center>
+<h3>BIT-RARS - Risc-V Assembly and Runtime Simulator</h3>
+<h4>Release 0.1</h4>
+<h4>November 2018</h4>
+<h4>Cool Capability: Plug-in Tools</h4>
+</center>
+
+Old tools in MARS 4.5 are selected and modified for usage in Risc-V.
+Just like MAR 4.5, RARS 0.9 is capable of running externally-developed software that meets a set of requirements.
+Everyone is encouraged to contribute new tools to this system.
+
+The requirements for such a program are:
+<ol>
+<li>It implements the <tt>rars.tools.MarsTool</tt> interface.
+<li>It is part of the <tt>rars.tools</tt> package.
+<li>It compiles cleanly into a ".class" file, stored in the <tt>rars/tools</tt> directory.
+</ol>
+RARS will detect all qualifying tools upon startup and include them in
+its Tools menu. 
+When a tool's menu item is selected, an instance of it will be created using its no-argument
+constructor and its <tt>action()</tt> method will be invoked.
+If no qualifying tools are found at RARS startup, the Tools menu will not 
+appear.  
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<html>
+<title>Macros in RARS</title>
+<body>
+<center>
+    <h3>Writing and Using Macros</h3>
+    <h4><tt>.macro</tt>, <tt>.endm</tt>,<tt>.equ</tt> directives</h4>
+</center>
+<h3> Introduction to macros</h3>
+<p><b>Macro</b> is <i>a pattern-matching and replacement facility
+    that provides a simple mechanism to name a frequently used sequence of instructions</i>.
+    This permits the programmer to specify the instruction sequence by invoking the macro. This requires
+    only one line of code for each use instead of repeatedly typing
+    in the instruction sequence each time. It follows the axiom "define once, use many times," which
+    not only reduces the chance for error but also facilitates program maintenance.</p>
+
+
+<p>As a simple example, you may want to terminate your program from a number of locations. If you are running
+    from the MARS IDE, you will use system call 10, <tt>exit</tt>. The instruction sequence is pretty easy</p>
+<pre>
+		addi x2,x2,10
+		syscall		</pre>
+but still tedious. You can define a macro, let's call it <tt>done</tt>, to represent this sequence
+<pre>
+		.macro done
+		addi x2,x2,10
+		syscall
+		.endm		</pre>
+then invoke it whenever you wish with the statement
+<pre>
+		done</pre>
+At assembly time, the assembler will replace each occurrence of the statement <tt>done</tt> with the two-statement
+sequence
+<pre>
+		addi x2,x2,10
+		syscall		</pre>
+This is the macro expansion. The runtime simulator is unaware of macros or macro expansion.</p>
+
+<p>If running RARS from the command line, perhaps you want to return a termination value. This can be done
+    with syscall 17, <tt>exit2</tt>, which takes the termination value as an argument. An equivalent macro,
+    let's call it <tt>terminate</tt> would be
+<pre>
+		.macro terminate (%termination_value)
+		addi x4,zero, %termination_value
+		addi x2,x2,17
+		syscall
+		.endm		</pre>
+This macro defines a <i>formal parameter</i> to represent the termination value. You would invoke it
+with the statement
+<pre>
+		terminate (1)</pre>
+to terminate with value 1. Upon assembly,
+the statement <tt>terminate (1)</tt> would be replaced by the three-statement sequence
+<pre>
+		addi x4,zero, %termination_value
+		addi x2,x2,17
+		syscall		</pre>
+The <i>argument value</i>, 1, is substituted wherever the formal parameter <tt>%termination_value</tt> appears
+in the macro body.
+This is a textual substitution. Note that in this example the argument value must be an integer, not a
+register name or a label, because the parameter is used as the second operand in the Load Immediate operation.</p>
+
+<p>In RARS, a macro is similar to an extended (pseudo) instruction. They are distinguished in that the expansion of
+    extended instructions is supported by an internally-defined specification language and mechanism which can
+    manipulate argument values.
+    The macro facility can only substitute argument values as given, and it uses a separate mechanism from extended
+    instructions. </p>
+
+<p>Additional examples and details follow.</p>
+
+<h3> How to define macros </h3>
+The first line begins with a <tt>.macro</tt> directive followed by an optional list of formal parameters.
+Placing commas between parameters and parentheses around the list is optional.
+<p>
+    Each formal parameter is an identifier that begins with a <tt>%</tt> character. For compatibility with
+    the SPIM preprocessor APP, it may alternatively begin with <tt>$</tt>.
+</p>
+<p>
+    The lines that follow define the body of the macro. Use the formal parameters as appropriate. The body
+    may contain data segments as well as text segments.
+</p>
+<p>The macro definition finishes with a <tt>.endm</tt> directive.
+</p>
+<p>See the Notes below for additional information.</p>
+
+<h3> How to use macros</h3>
+
+To invoke a macro, form a statement consisting of the macro name and then one token for each argument
+to be substituted for its corresponding formal parameter by the assembler.
+The argument list may optionally be surrounded by parentheses.
+Arguments may be separated either by spaces or commas.
+<p>
+    Macro expansion is a pre-processing task for assemblers.
+</p>
+<h3> Notes</h3>
+<ul>
+    <li>
+        A macro definition must appear before its use. No forward references.
+    </li>
+    <li>
+        All macro definitions are local in each file and they cannot be global.
+    </li>
+    <li>
+        Nested macro definitions are not supported. No <tt>.macro</tt> directive should appear inside body of a macro
+        definition.
+    </li>
+    <li>
+        A macro definition can contain a call to a previously-defined macro. Only backward references are allowed.
+    </li>
+    <li>
+        Labels placed in the body of a macro definition will not have same name after macro expansion.
+        During expansion, their name will be followed by "_M#" where # will be a unique number for each macro expansion.
+    </li>
+    <li>
+        Two macros with the same name but different number of parameters are considered different and both can be used.
+    </li>
+    <li>
+        A macro defined with the same name and same number of parameters as another macro defined before it will be
+        ignored.
+    </li>
+    <li>
+        Each argument in a macro call can only be a single language element (token).
+    </li>
+</ul>
+<h3> Examples</h3>
+<ul>
+    <li>
+        Printing an integer (argument may be either an immediate value or register name):
+        <pre><tt>	.macro print_int (%x)
+	addi x2,zero,1
+	add x4,zero, %x		#pseudo if %x is a immediate
+	syscall
+	.endm
+	
+	print_int (t0)
+	#print_int (10)  # need pesudo_inst add reg0,reg1,imme   add pesudo_inst or rewrite macro using 'addi' to solve this
+</tt></pre>
+    </li>
+    <li>
+        Printing a string (macro will first assign a label to its parameter in data segment then print it):
+        <pre><tt>	.macro print_str (%str)
+	.data
+myLabel: .asciz %str
+	.text
+	addi x2,zero,4
+	la x4, myLabel
+	syscall
+	.endm
+	
+	print_str ("test1")	#"test1" will be labeled with name "myLabel_M0"
+	print_str ("test2")	#"test2" will be labeled with name "myLabel_M1"
+</tt></pre>
+    </li>
+    <li>
+        Implementing a simple for-loop:
+        <pre><tt>	# generic looping mechanism
+	.text
+.macro for (%regIterator, %from, %to, %bodyMacroName)
+	addi %regIterator, zero, %from
+	addi t0, zero, %to
+	Loop:
+	%bodyMacroName ()
+	addi %regIterator, %regIterator, 1
+	bge t0, %regIterator, Loop
+	.endm
+
+	#print an integer
+	.macro body()
+	print_int(t1)
+	print_str("\n")
+	.endm
+
+	#printing 1 to 10:
+	for (t1, 1, 10, body)
+</tt></pre>
+        The <tt>for</tt> macro has 4 parameters. <tt>%regIterator</tt> should be the name of a register which iterates
+        from <tt>%from</tt> to <tt>%to</tt> and in each iteration <tt>%bodyMacroName</tt> will be expanded and run.
+        Arguments for
+        <tt>%from</tt> and <tt>%to</tt> must be an immediate value(using a register still need improvement to support
+        more pesudo_inst), and <tt>%bodyMacroName</tt>
+        should be name of a macro that has no parameters.
+    </li>
+</ul>
+
+
+<h3>The .eqv directive</h3>
+<p>The <tt>.eqv</tt> directive (short for "equivalence") is similar to <tt>#define</tt> in C
+    or C++. It is used to substitute an arbitrary string for an identifier. It is useful but much less powerful than
+    macros.
+    It was developed independently of the macro facility.
+</p>
+<p>Using <tt>.eqv</tt>, you can specify simple substitutions that provide "define once, use many times" capability at
+    assembly
+    pre-processing time. For example, once you define
+<pre>
+    .equ  LIMIT      20
+    .equ  CTR        t2
+    .equ  CLEAR_CTR  addi  CTR, zero, 0
+
+       addi   t2, zero, 11
+       addi   t0, zero, LIMIT
+       CLEAR_CTR
+loop:  add    x4, zero, CTR
+       addi   x2, zero, 1
+       syscall
+       addi   CTR, CTR, 1
+       blt    CTR, t0, loop
+       CLEAR_CTR</pre>
+which when run will display the values 0 through 19 on one line with no intervening spaces.
+</p>
+<p>Note that the substitution string is not limited to a single token. Like <tt>.macro</tt>, <tt>.eqv</tt> is local to
+    the file
+    in which it is defined, and must be defined prior to use. Macro bodies can contain references to <tt>.eqv</tt>
+    directives.
+</p>
+
+</body>
+</html>
