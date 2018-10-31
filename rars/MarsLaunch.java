@@ -236,7 +236,7 @@ public class MarsLaunch {
                     public void run() {
                         //Turn off metal's use of bold fonts
                         //UIManager.put("swing.boldMetal", Boolean.FALSE);
-                        new VenusUI("RARS " + Globals.version);
+                        new VenusUI("BIT-RARS " + Globals.version);
                     }
                 });
         return;
