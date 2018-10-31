@@ -10,10 +10,10 @@
 <P> A few pseudo-instructions are supportet. we noticed that it's not enough and will be added in the future version.
 <H3>3. Installing and Running</H3>
 <P> There is a .jar in bin, Java JRE required.
-<P> The main class is in <tt>Rars.java<\tt> and other sources are in <tt>help<\tt>, <tt>images<\tt> and <tt>rars<\tt>, in case anyone want to compile or view the code
+<P> The main class is in `Rars.java` and other sources are in `help`, `images` and `rars`, in case anyone want to compile or view the code
 <H3>4. Examples</H3>
-<P> (1. Open Rars.jar, find<tt>Help→Rars→Examples<\tt>. Two example are added there.
-<P> (2. Open file <tt>asm_examples<\tt>. More examples will be found to implement Bubblesort and calculate fibonacci.
+<P> (1. Open Rars.jar, find`Help→Rars→Examples`. Two example are added there.
+<P> (2. Open file `asm_examples`. More examples will be found to implement Bubblesort and calculate fibonacci.
 <H3>5. Future Work</H3>
 
 <P>More pseudo-instrucions to be added.
