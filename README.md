@@ -2,7 +2,7 @@
 
 
 <H3>Introduction</H3>
-<P>BIT-RARS is developed by Yueyan Zhao, Anmin Li and Weixing Ji at Beijing Institute of Technology based on MARS, a MIPS simulator in Java.
+<P>BIT-RARS is a RISC-V simulator for teaching developed by Yueyan Zhao, Anmin Li and Weixing Ji at Beijing Institute of Technology based on MARS, a MIPS simulator in Java. 
 
 <H3>Supported Instructions</H3>
 
