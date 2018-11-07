@@ -20,7 +20,7 @@ README
   The fourth section is placed to display the output and reports of assembling and simulation.<br>
   The section on the right will be introduced in the lines follow.<br>
   <br>
-  Before using it to write your own codes, load the example and have a look is recommeneded.<br>
+  Before using it to write your own codes, load an example and have a look is recommeneded.<br>
   Click **File→Open**, and follow the directory in **section 4→(2)** to find the examples. You will file the example in the edit page.<br>
   Here we will show you the former way.<br>
   ![2](https://github.com/jiweixing/bit-rars/raw/master/screen_shot/3_2.jpg "Open file")
