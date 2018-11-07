@@ -10,6 +10,9 @@ README
   The basic instructions in RV32I are mainly supported.<br>
   Directives and macro are supported.<br>
   A few pseudo-instructions are supportet. we noticed that it's not enough and will be added in the future version.<br>
+### More modifications：
+  Frame has been modified to support Risc-V 
+Several tools have been modified and tested. 
 ## 3. Installing and Running
   There is a .jar in bin, Java JRE required.<br>
   Now you are at the main UI of rars. <br>
@@ -30,10 +33,10 @@ README
   ![4](https://github.com/jiweixing/bit-rars/raw/master/screen_shot/3_4.jpg "Assemble file")	<br>
   ![5](https://github.com/jiweixing/bit-rars/raw/master/screen_shot/3_5.jpg "Assemble button in tool bar")	<br>
   Then all the work have been done. Just use run, step and other command in the tool bar(next to  the assemble button) to run the code and view the outcomes.<br>
-###About the source code：
+### About the source code：
   The main class is in Rars.java and other source codes are in help, images and rars, in case anyone want to compile or read the code
 ## 4. Examples
-  (1. Open Rars.jar, find **Help→Rars→Examples**. Two example are added there.<br>
+  (1. Open Rars.jar, find **Help→Rars→Examples**. Two example are presented there.<br>
   (2. Open file **asm_examples**. More examples will be found to implement Bubblesort and calculate fibonacci.<br>
 ## 5. Future Work
   More pseudo-instrucions to be added.<br>
