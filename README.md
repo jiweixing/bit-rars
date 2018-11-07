@@ -14,7 +14,7 @@ README
   Frame has been modified to support Risc-V 
 Several tools have been modified and tested. 
 ## 3. Installing and Running
-  There is a .jar in bin, Java JRE required.<br>
+  Download jar file in .\bin, Java JRE 1.6 or above is required. Run it.<br>
   Now you are at the main UI of rars. <br>
   ![1](https://github.com/jiweixing/bit-rars/raw/master/screen_shot/3_1.jpg "Main UI")	<br>
   As you can see, there are mainly four sections in the main UI. <br>
