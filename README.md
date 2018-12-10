@@ -40,4 +40,3 @@ README
   Syscall will be adjusted to follow the general use of register in Risc-V<br>
   <br>
   Please feel free to contact us(jwx@bit.edu.cn), if you have any questions about this project.<br>
-h
