@@ -23,7 +23,7 @@ README
   The fourth section is a console to display the output and reports of assembling and simulation.<br>
   <br>
   Here is an exmaple to show you how to use the simulator:<br>
-  Click **File→Open**, and follow the instructions in [section 4→(2)]((#examples)) to find the examples. Copy and paste the example in the edit page.<br>
+  Click **File→Open**, and follow the instructions in [section 4→(2)]((#4.)) to find the examples. Copy and paste the example in the edit page.<br>
   ![2](https://github.com/jiweixing/bit-rars/raw/master/screen_shot/3_2.jpg "Open file")
   ![3](https://github.com/jiweixing/bit-rars/raw/master/screen_shot/3_3.jpg "Select file")	<br>
   <br>
@@ -33,7 +33,7 @@ README
   Then all the work have been done. Just use run, step and other command in the tool bar(next to  the assemble button) to run the code and watch the outcomes.<br>
 ### About the source code：
   The main class is in Rars.java and other source codes are in help, images and rars, in case anyone want to compile or read the code
-## 4. Examples <span id = "examples">
+## 4. Examples 
   (1. Open Rars.jar, find **Help→Rars→Examples**, where two example are presented.<br>
   (2. Open directory `.\asm_examples`. More examples will be found to implement Bubblesort and calculate fibonacci.<br>
 ## 5. Future Work
