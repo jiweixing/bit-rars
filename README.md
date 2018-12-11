@@ -12,9 +12,10 @@ README
   A few pseudo-instructions are supportet. we noticed that it's not enough and will be enriched in the future version.<br>
 
 ## 3. Installing and Running
-   Java JRE 1.6 or above is required. Download jar file in directory .\bin and Run it from console<br>
-   java -jar Rars.jar <br>
-  <br>
+   Java JRE 1.6 or above is required. Download jar file in directory `.\bin` and Run it from console<br>
+   
+    $ java -jar Rars.jar 
+   
   ![1](https://github.com/jiweixing/bit-rars/raw/master/screen_shot/3_1.jpg "Main UI")	<br>
   There are mainly four sections in the main UI. <br>
   The first and second section are menu and tool bar. <br>
@@ -33,8 +34,8 @@ README
 ### About the source code：
   The main class is in Rars.java and other source codes are in help, images and rars, in case anyone want to compile or read the code
 ## 4. Examples
-  (1. Open Rars.jar, find **Help→Rars→Examples**. Two example are presented there.<br>
-  (2. Open file **asm_examples**. More examples will be found to implement Bubblesort and calculate fibonacci.<br>
+  (1. Open Rars.jar, find **Help→Rars→Examples**, where two example are presented.<br>
+  (2. Open directory `.\asm_examples`. More examples will be found to implement Bubblesort and calculate fibonacci.<br>
 ## 5. Future Work
   More pseudo-instrucions to be added.<br>
   Syscall will be adjusted to follow the general use of register in Risc-V<br>
