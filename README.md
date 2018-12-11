@@ -23,7 +23,7 @@ README
   The fourth section is a console to display the output and reports of assembling and simulation.<br>
   <br>
   Here is an exmaple to show you how to use the simulator:<br>
-  Click **File→Open**, and follow the instructions in **section 4→(2)** to find the examples. Copy and paste the example in the edit page.<br>
+  Click **File→Open**, and follow the instructions in [section 4→(2)]((#4.)) to find the examples. Copy and paste the example in the edit page.<br>
   ![2](https://github.com/jiweixing/bit-rars/raw/master/screen_shot/3_2.jpg "Open file")
   ![3](https://github.com/jiweixing/bit-rars/raw/master/screen_shot/3_3.jpg "Select file")	<br>
   <br>
