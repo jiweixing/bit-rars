@@ -4,10 +4,10 @@ README
 
 
 ## 1. Introduction
-  BIT-RARS is a RISC-V simulator for teaching designed by Yueyan Zhaob based on MARS, a MIPS simulator in Java. <br>
+  BIT-RARS is a RISC-V simulator for teaching designed by Yueyan Zhao based on MARS, a MIPS simulator in Java. <br>
 
 ## 2. Supported Instructions
-  The basic instructions in RV32I are supported.<br>
+  The basic instructions set RV32I.<br>
   Directives and macro are supported.<br>
   A few pseudo-instructions are supportet. we noticed that it's not enough and will be enriched in the future version.<br>
 
