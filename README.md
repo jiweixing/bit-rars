@@ -1,6 +1,6 @@
 README
 
-# BIT-RARS : a RISC-V Simulator in Java 
+# BIT-RARS : RISC-V Simulator in Java 
 
 
 ## 1. Introduction
